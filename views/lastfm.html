@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Latest music activity (@<?=$user?>)">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/assets/lastfm.png" sizes="192x192">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/offcanvas.css" rel="stylesheet">
+    <title>Latest music activity (@{{ user }})</title>
+    <style>
+        body {
+            background-image: url(/assets/lastfmbg.jpg);
+            background-position: center center;
+            background-repeat:  no-repeat;
+            background-attachment: fixed;
+            background-size:  cover;
+            background-color: #999;
+        }
+    </style>
+  </head>
+
+  <body class="bg-light">
+
+    <main role="main" class="container">
+
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-grey-dark rounded box-shadow" style="background-color: #000 !important;">
+            <img class="mr-3 rounded" src="{{ avatar }}" alt="" width="48" height="48">
+            <div class="lh-100">
+            <h6 class="mb-0 text-white lh-100">{{ fullname }} (@{{ user }})</h6>
+            <small>Lastfm Timeline</small>
+            </div>
+        </div>
+
+        <div class="my-3 p-3 bg-light rounded box-shadow">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Latest music activity</h6>
+
+            {% for i in tracks %}
+            <div class="media text-muted pt-3">
+            <a href="{{ i.url }}">
+                <img src="{% if i.image[0]["#text"] != null %}{{ i.image[0]["#text"] }}{% else %}/assets/notitle.png{% endif %}" style="width: 34px; height: 34px;" alt="" class="mr-2 rounded">
+            </a>
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark">{{ i.name }}</strong>
+                    {% if i.date.uts != null %}
+                        {{  i.date.uts|elapsed }}
+                    {% else %}
+                        <span><img src="/assets/eq_icon.gif" />Scrobbling now</span>
+                    {% endif %}
+                </div>
+                <span class="d-block">{{ i.artist["#text"] }}</span>
+            </div>
+            </div>
+            {% endfor %}
+
+            <small class="d-block text-right mt-3">
+            <a href="https://www.last.fm/user/{{ user }}">All Scrobbles</a>
+            </small>
+        </div>
+
+        <div class="alert alert-secondary" role="alert">
+            <small>made with ❤︎ by <a href="https://github.com/skorotkiewicz">skorotkiewicz</a> / source code <a href="http://github.com/skorotkiewicz/lastfm-web-viewer-node">here</a></small>
+            <!-- cached: {{ cached }} -->
+        </div>
+
+    </main>
+
+  </body>
+</html>
