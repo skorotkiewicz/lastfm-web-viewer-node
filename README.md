@@ -10,4 +10,4 @@ $ vim config.js
 
 ### Usage
 
-http://localhost:3000/**lastfmUserName**?fullname=**OPTIONAL**&avatar=**http://OPTIONAL**
+http://localhost:3000/lastfmUserName?fullname=OPTIONAL&avatar=http://OPTIONAL
