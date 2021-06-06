@@ -3,7 +3,7 @@
 ### Install
 
 ```bash
-$ node install
+$ yarn install
 $ mv config_default.js config.js
 $ vim config.js
 ```
